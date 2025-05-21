@@ -1,8 +1,9 @@
 .env
-application.yaml
 run_news_note_poster.bat
 output
 log
 __pycache__
 run_generate_news.bat
 run_post_to_note.bat
+prompts/system-prompt.yaml
+prompts/user-prompt.yaml

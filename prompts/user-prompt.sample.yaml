@@ -1,0 +1,8 @@
+user_prompt:
+  context: AI関連のニュース
+  task: 日本語で簡潔にわかりやすく要約する
+  input_fields:
+    - title: "{title}"
+    - content: "{content}"
+  output_language: 日本語
+  output_style: 簡潔でわかりやすい表現

@@ -5,6 +5,10 @@ from openai import OpenAI
 
 load_dotenv()
 
+def load_prompt_file(path):
+    with open(path, 'r', encoding='utf-8') as f:
+        return f.read()
+
 def load_application_yaml(path="application.yaml"):
     with open(path, 'r', encoding='utf-8') as f:
         return yaml.safe_load(f)
@@ -16,8 +20,9 @@ def fetch_ai_news(settings):
 client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 def summarize_article(settings, title, content):
-    user_prompt = settings["user-prompt"].format(title=title, content=content)
-    system_prompt = settings["system-prompt"]
+    system_prompt = load_prompt_file("prompts/system-prompt.yaml")
+    user_prompt_template = load_prompt_file("prompts/user-prompt.yaml")
+    user_prompt = user_prompt_template.format(title=title, content=content)
 
     res = client.chat.completions.create(
         model=settings["model"],
